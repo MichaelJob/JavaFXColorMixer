@@ -10,6 +10,7 @@
 <?import javafx.scene.control.RadioMenuItem?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -26,13 +27,16 @@
           </Menu>
           <Menu mnemonicParsing="false" text="Attributes">
             <items>
-                  <RadioMenuItem fx:id="menuRed" mnemonicParsing="false" text="red" />
-                  <RadioMenuItem fx:id="menuBlue" mnemonicParsing="false" text="blue" />
-                  <RadioMenuItem fx:id="menuGreen" mnemonicParsing="false" text="green" />
-                  <RadioMenuItem fx:id="menuYellow" mnemonicParsing="false" text="yellow" />
-                  <RadioMenuItem fx:id="menuCyan" mnemonicParsing="false" text="cyan" />
-                  <RadioMenuItem fx:id="menuOrange" mnemonicParsing="false" text="orange" />
-                  <RadioMenuItem fx:id="menuBlack" mnemonicParsing="false" text="black" />
+                  <RadioMenuItem fx:id="rbMenuRed" mnemonicParsing="false" text="red">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="tgMenu" />
+                     </toggleGroup></RadioMenuItem>
+                  <RadioMenuItem fx:id="rbMenuBlue" mnemonicParsing="false" text="blue" toggleGroup="$tgMenu" />
+                  <RadioMenuItem fx:id="rbMenuGreen" mnemonicParsing="false" text="green" toggleGroup="$tgMenu" />
+                  <RadioMenuItem fx:id="rbMenuYellow" mnemonicParsing="false" text="yellow" toggleGroup="$tgMenu" />
+                  <RadioMenuItem fx:id="rbMenuCyan" mnemonicParsing="false" text="cyan" toggleGroup="$tgMenu" />
+                  <RadioMenuItem fx:id="rbMenuOrange" mnemonicParsing="false" text="orange" toggleGroup="$tgMenu" />
+                  <RadioMenuItem fx:id="rbMenuBlack" mnemonicParsing="false" text="black" toggleGroup="$tgMenu" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -49,7 +53,7 @@
                <children>
                   <Label fx:id="labelRed" minWidth="70.0" text="Red" />
                   <Slider fx:id="sliderR" max="255.0" prefHeight="16.0" prefWidth="200.0" value="125.0" />
-                  <TextField fx:id="txtRed" maxWidth="60.0" />
+                  <TextField fx:id="txtRed" maxWidth="60.0" text="125" />
                   <Label fx:id="textRedValue" minWidth="70.0" text="Label" />
                </children>
             </HBox>
@@ -57,7 +61,7 @@
                <children>
                   <Label fx:id="labelGreen" minWidth="70.0" text="Green" />
                   <Slider fx:id="sliderG" max="255.0" prefHeight="16.0" prefWidth="200.0" value="125.0" />
-                  <TextField fx:id="txtGreen" maxWidth="60.0" />
+                  <TextField fx:id="txtGreen" maxWidth="60.0" text="125" />
                   <Label fx:id="textGreenValue" minWidth="70.0" text="Label" />
                </children>
             </HBox>
@@ -65,7 +69,7 @@
                <children>
                   <Label fx:id="labelBlue" minWidth="70.0" text="Blue" />
                   <Slider fx:id="sliderB" max="255.0" prefHeight="16.0" prefWidth="200.0" value="125.0" />
-                  <TextField fx:id="txtBlue" maxWidth="60.0" />
+                  <TextField fx:id="txtBlue" maxWidth="60.0" text="125" />
                   <Label fx:id="textBlueValue" minWidth="70.0" text="Label" />
                </children>
             </HBox>
@@ -82,13 +86,16 @@
                   </Pane>
                   <VBox fx:id="vBoxColors" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="red" />
-                        <RadioButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="blue" />
-                        <RadioButton layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="green" />
-                        <RadioButton layoutX="10.0" layoutY="28.0" mnemonicParsing="false" text="yellow" />
-                        <RadioButton layoutX="10.0" layoutY="28.0" mnemonicParsing="false" text="cyan" />
-                        <RadioButton layoutX="10.0" layoutY="46.0" mnemonicParsing="false" text="orange" />
-                        <RadioButton layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="black" />
+                        <RadioButton fx:id="rbRed" mnemonicParsing="false" text="red">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="tgGUI" />
+                           </toggleGroup></RadioButton>
+                        <RadioButton fx:id="rbBlue" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="blue" toggleGroup="$tgGUI" />
+                        <RadioButton fx:id="rbGreen" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="green" toggleGroup="$tgGUI" />
+                        <RadioButton fx:id="rbYellow" layoutX="10.0" layoutY="28.0" mnemonicParsing="false" text="yellow" toggleGroup="$tgGUI" />
+                        <RadioButton fx:id="rbCyan" layoutX="10.0" layoutY="28.0" mnemonicParsing="false" text="cyan" toggleGroup="$tgGUI" />
+                        <RadioButton fx:id="rbOrange" layoutX="10.0" layoutY="46.0" mnemonicParsing="false" text="orange" toggleGroup="$tgGUI" />
+                        <RadioButton fx:id="rbBlack" layoutX="10.0" layoutY="64.0" mnemonicParsing="false" text="black" toggleGroup="$tgGUI" />
                      </children>
                      <padding>
                         <Insets left="10.0" />
@@ -96,8 +103,8 @@
                   </VBox>
                   <VBox fx:id="vBoxButtons" alignment="CENTER" layoutX="550.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                      <children>
-                        <Button minWidth="80.0" mnemonicParsing="false" text="Darker" />
-                        <Button layoutX="10.0" layoutY="10.0" minWidth="80.0" mnemonicParsing="false" text="Brighter" />
+                        <Button fx:id="btDarker" minWidth="80.0" mnemonicParsing="false" text="Darker" />
+                        <Button fx:id="btBrighter" layoutX="10.0" layoutY="10.0" minWidth="80.0" mnemonicParsing="false" text="Brighter" />
                      </children>
                   </VBox>
                </children>
