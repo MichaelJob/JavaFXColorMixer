@@ -1,3 +1,12 @@
+/**
+ * depa Colorpicker JavaFX Main
+ * 
+ * Colorvalues based on Sliders. All other controls bind or react to Sliders.
+ * 
+ * @author: Michael Job
+ * 
+ */
+
 package sample;
 
 import javafx.application.Application;

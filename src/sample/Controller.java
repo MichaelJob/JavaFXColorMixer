@@ -1,3 +1,12 @@
+/**
+ * depa Colorpicker JavaFX Controller
+ * 
+ * Colorvalues based on Sliders. All other controls bind or react to Sliders.
+ * 
+ * @author: Michael Job
+ * 
+ */
+
 package sample;
 
 import javafx.beans.binding.Bindings;
@@ -104,15 +113,6 @@ public class Controller {
 	private Color thisColor = Color.rgb(125, 125, 125);
 
 	public void initialize() {
-
-		setupMenu();
-		addSliderListeners();
-		addTextFieldListeners();
-		addRadioButtonListeners();
-		addMenuRadioButtonListeners();
-		addButtonListener();
-		setupHEX();
-
 		// create Binding of Color for Pane
 		ObjectBinding<Background> backgroundColorBinding = Bindings.createObjectBinding(() -> {
 			int red = sliderR.valueProperty().intValue();
@@ -126,6 +126,15 @@ public class Controller {
 
 		// bind ColorPane
 		colorPane.backgroundProperty().bind(backgroundColorBinding);
+		
+		setupMenu();
+		addSliderListeners();
+		addTextFieldListeners();
+		addRadioButtonListeners();
+		addMenuRadioButtonListeners();
+		addButtonListener();
+		setupHEX();
+
 	}
 
 	private void setupHEX() {
@@ -209,6 +218,9 @@ public class Controller {
 			rbMenuBlack.setSelected(true);
 			break;
 		default:
+			for (Toggle t : tgMenu.getToggles()) {
+				t.setSelected(false);
+			}
 			break;
 		}
 	}
@@ -237,6 +249,9 @@ public class Controller {
 			tgGUI.selectToggle(rbBlack);
 			break;
 		default:
+			for (Toggle t : tgGUI.getToggles()) {
+				t.setSelected(false);
+			}
 			break;
 		}
 	}
@@ -299,6 +314,7 @@ public class Controller {
 				alert.showAndWait().filter(response -> response == ButtonType.OK);
 			}
 			sliderR.setValue(newValueD);
+			resetRadioButtons();
 		});
 		txtGreen.textProperty().addListener((observable, oldValue, newValue) -> {
 			Double newValueD = Double.valueOf(oldValue);
@@ -314,6 +330,7 @@ public class Controller {
 				alert.showAndWait().filter(response -> response == ButtonType.OK);
 			}
 			sliderG.setValue(newValueD);
+			resetRadioButtons();
 		});
 		txtBlue.textProperty().addListener((observable, oldValue, newValue) -> {
 			Double newValueD = Double.valueOf(oldValue);
@@ -329,7 +346,43 @@ public class Controller {
 				alert.showAndWait().filter(response -> response == ButtonType.OK);
 			}
 			sliderB.setValue(newValueD);
+			resetRadioButtons();
 		});
+	}
+
+	private void resetRadioButtons() {
+		int red = sliderR.valueProperty().intValue();
+		int green = sliderG.valueProperty().intValue();
+		int blue = sliderB.valueProperty().intValue();
+		thisColor = Color.rgb(red, green, blue);
+		String farbe = "";
+		switch (thisColor.toString()) {
+		case "0xff0000ff":
+			farbe = "red";
+			break;
+		case "0x0000ffff":
+			farbe = "blue";
+			break;
+		case "0x00ff00ff":
+			farbe = "green";
+			break;
+		case "0xffff00ff":
+			farbe = "yellow";
+			break;
+		case "0x00ffffff":
+			farbe = "cyan";
+			break;
+		case "0xffa500ff":
+			farbe = "orange";
+			break;
+		case "0x000000ff":
+			farbe = "black";
+			break;
+		default:
+			break;
+		}
+		setGUIrbFarbe(farbe);
+		setMenuFarbe(farbe);
 	}
 
 	// bind slider to textfields and hex labels
